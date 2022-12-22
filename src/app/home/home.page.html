@@ -1,20 +1,43 @@
-<ion-header [translucent]="true">
+<ion-header  *ngIf="formsCreator.length > 0">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Forms
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  
+  <div *ngIf="formsCreator.length == 0" class="no-items">
+    <h2>{{ 'No forms available until now!' }}</h2>
+    <ion-button (click)="createForm()">
+      Create Form
+    </ion-button>
   </div>
+
+  <div class="ion-padding list" *ngIf="formsCreator.length > 0">
+    <ion-item *ngFor="let form of formsCreator; index as i" lines="none">
+      <ion-label>
+        <h2 style="font-weight: bold;">{{form.value.name}}</h2>
+        <p>{{form.value.email}}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editForm(i)">
+          <ion-icon name="create" slot="icon-only" color="primary"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteForm(i)">
+          <ion-icon name="trash" slot="icon-only" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </div>
+
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="formsCreator.length > 0">
+    <ion-fab-button size="small" (click)="createForm()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+

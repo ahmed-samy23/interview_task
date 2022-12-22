@@ -1,0 +1,90 @@
+.new-form {
+    ion-item {
+        position: relative;
+        padding: 5px;
+        ion-label {
+            display: inline-block !important;
+            font-size: 20px;
+            color: #8a8a8e;
+            padding-inline-start: 25px;
+        }
+        ion-input {
+            --padding-start: 15px !important;
+            margin-top: 10px !important;
+            font-weight: bold !important;
+            --placeholder-color: #8a8a8e;
+            --placeholder-font-weight: normal;
+            padding: 5px !important;
+            border-radius: 15px;
+            border: 1px solid;
+        }
+        ion-icon {
+            color: #8a8a8e !important;
+            position: absolute;
+            bottom: 11px;
+            z-index: 99;
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+    .invalid_input p {
+        margin: 0px !important;
+        padding-inline-start: 35px;
+        font-size: 12px;
+        color: red;
+    }
+    .not_tuched{
+        ion-label{
+            color: var(--ion-color-primary) !important;
+        }
+        ion-input{
+            border-color: var(--ion-color-primary) !important;
+        }
+    }
+    .valid{
+        ion-label{
+            color: var(--ion-color-success) !important;
+        }
+        ion-input{
+            border-color: var(--ion-color-success) !important;
+        }
+    }
+    .invalid{
+        ion-label{
+            color: var(--ion-color-danger) !important;
+        }
+        ion-input{
+            border-color: var(--ion-color-danger) !important;
+        }
+    }
+}
+
+ion-toolbar {
+    ion-title {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+}
+
+.btn {
+    justify-content: center;
+    padding-top: 11px;
+    
+}
+
+.obj {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 30px;
+    p span {
+        color: var(--ion-color-primary);
+        font-weight: bold;
+    }
+    .success{
+        text-align: center;
+        color: var(--ion-color-success);
+    }
+}

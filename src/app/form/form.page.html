@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!index">New form</ion-title>
+    <ion-title *ngIf="index">Update form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="newForm" (submit)="saveForm()" *ngIf="!isSubmit" class="new-form">
+
+    <ion-item lines="none" [ngClass]="f.name.touched? f.name.invalid? 'invalid' : 'valid' : 'not_tuched'">
+      <ion-label position="stacked">Name: </ion-label>
+      <ion-input type="text" formControlName="name" placeholder="Write your name..">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="f.name.touched && f.name.invalid" class="invalid_input">  
+      <p *ngIf="f.name.errors.required">Mobile Number is required.</p> 
+    </div>
+
+    <ion-item lines="none" [ngClass]="f.email.touched? f.email.invalid? 'invalid' : 'valid' : 'not_tuched'">
+      <ion-label position="stacked">Email Address: </ion-label>
+      <ion-input type="email" formControlName="email" placeholder="Write your email address..">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="f.email.touched && f.email.invalid" class="invalid_input">  
+      <p *ngIf="f.email.errors.required">Email address is required.</p>  
+      <p *ngIf="f.email.errors.email">Please, Write a valid Email.</p>  
+    </div>
+
+    <ion-item lines="none" [ngClass]="f.phone.touched? f.phone.invalid? 'invalid' : 'valid' : 'not_tuched'">
+      <ion-label position="stacked">Phone Number: </ion-label>
+      <ion-input type="Number" formControlName="phone" placeholder="Write your email address..">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="f.phone.touched && f.phone.invalid" class="invalid_input">  
+      <p *ngIf="f.phone.errors.required">Mobile Number is required.</p>  
+      <p *ngIf="f.phone.errors.pattern">Please, Enter 10 digit Mobile Number.</p>  
+    </div>
+
+
+    <ion-row class="btn">
+      <ion-button type="submit" [disabled]="newForm.status != 'VALID'">
+        <span *ngIf="!index">Save</span>
+        <span *ngIf="index">Update</span>
+      </ion-button>
+    </ion-row>
+
+  </form>
+
+  <div *ngIf="isSubmit" class="obj">
+    <p><span>Name: </span>{{newForm.value.name}}</p>
+    <p><span>Email: </span>{{newForm.value.email}}</p>
+    <p><span>Phone: </span>{{newForm.value.phone}}</p>
+    <ion-row class="btn" *ngIf="!index">
+      <ion-button (click)="createForm()">
+        Create new form
+      </ion-button>
+    </ion-row>
+    <p *ngIf="index" class="success">Form updated successfully!</p>
+  </div>
+</ion-content>
